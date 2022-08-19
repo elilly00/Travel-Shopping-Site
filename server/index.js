@@ -102,9 +102,9 @@ app.get("/api/users/logout", auth, (req, res) => {
     });
 });
 
-const port = 5000;       // port는 아무거나 설정해도 됨
+const port = 5020;
 
-// 5000번 port에서 실행
+// 5020번 port에서 실행
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
 });
