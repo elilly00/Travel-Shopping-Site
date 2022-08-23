@@ -1,7 +1,8 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter as Router,
+import {
   Routes, 
-  Route 
+  Route, 
+  BrowserRouter
 } from 'react-router-dom';
 
 import Auth from './hoc/auth';
@@ -23,14 +24,14 @@ function App() {
     <Suspense fallback={(<div>Loading...</div>)}>
       <NavBar />
         <div style={{ paddingTop: "69px", minHeight: "calc(100vh - 80px)" }}>
-          <Router>
+          <BrowserRouter>
             <Routes>
               <Route path="/" element = {<AuthLandingPage/>} />
               <Route path="/login" element = {<AuthLoginPage/>} />
               <Route path="/register" element = {<AuthRegisterPage/>} />
               <Route path="/product/upload" element = {<AuthUploadProductPage/>} />
             </Routes>
-          </Router>
+          </BrowserRouter>
         </div>
         <Footer />
     </Suspense>
