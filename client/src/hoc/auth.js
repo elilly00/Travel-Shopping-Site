@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { auth } from '../_actions/user_action';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { auth } from "../_actions/user_action";
+import { useNavigate } from "react-router-dom";
 
 function Auth(SpecificComponent, option, adminRoute = null) {  // LandingPage Component, option, adminRoute
+    //backned의 그 사람의 현재 상태 확인
+    //api/user/auth로 정보 보내기 
 
     // option 종류
     // 1. null -> 아무나 출입이 가능한 페이지
@@ -15,12 +17,12 @@ function Auth(SpecificComponent, option, adminRoute = null) {  // LandingPage Co
         let navigate = useNavigate();
 
         useEffect(() => {
-            dispatch(auth()).then((response) => {
+            dispatch(auth()).then(async(response) => {
                 console.log(response);
 
                 // 로그인 하지 않은 상태
-                if(!response.payload.isAuth) {
-                    if(option) {
+                if(await !response.payload.isAuth) {
+                    if(option  === true) {
                         navigate("/login");
                     }
                 } else {
@@ -41,4 +43,4 @@ function Auth(SpecificComponent, option, adminRoute = null) {  // LandingPage Co
     return AuthenticationCheck;
 }
   
-  export default Auth;
+export default Auth;

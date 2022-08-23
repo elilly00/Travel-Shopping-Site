@@ -3,7 +3,7 @@ import {
     REGISTER_USER,
     AUTH_USER
 } from '../_actions/types';
-import { registerUser } from '../_actions/user_action';
+// import { registerUser } from '../_actions/user_action';
 
 const userReducer = (state = {}, action) => {
     switch (action.type) { // 각각의 타입마다 다른 대응을 해야하기 때문에 switch 문법을 이용해 처리함
