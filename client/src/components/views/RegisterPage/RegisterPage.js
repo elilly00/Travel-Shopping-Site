@@ -1,43 +1,42 @@
-import React, { useState } from 'react';
+import React from "react";
 import moment from "moment";
-import { Formik, Form } from 'formik';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { registerUser } from '../../../_actions/user_action';
-
+import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { registerUser } from "../../../_actions/user_action";
+import { useDispatch } from "react-redux";
 
 import {
-    Input,
-    Button,
+  Form,
+  Input,
+  Button,
 } from 'antd';
 
 const formItemLayout = {
-    labelCol: {
-      xs: { span: 24 },
-      sm: { span: 8 },
-    },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 16 },
-    },
+  labelCol: {
+    xs: { span: 24 },
+    sm: { span: 8 },
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: { span: 16 },
+  },
 };
 const tailFormItemLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0,
-      },
-      sm: {
-        span: 16,
-        offset: 8,
-      },
+  wrapperCol: {
+    xs: {
+      span: 24,
+      offset: 0,
     },
+    sm: {
+      span: 16,
+      offset: 8,
+    },
+  },
 };
 
 function RegisterPage(props) {
-    const dispatch = useDispatch();
-    let navigate = useNavigate();
+  const dispatch = useDispatch();
+  return (
 
     <Formik
       initialValues={{
@@ -47,7 +46,6 @@ function RegisterPage(props) {
         password: '',
         confirmPassword: ''
       }}
-
       validationSchema={Yup.object().shape({
         name: Yup.string()
           .required('Name is required'),
@@ -63,9 +61,9 @@ function RegisterPage(props) {
           .oneOf([Yup.ref('password'), null], 'Passwords must match')
           .required('Confirm Password is required')
       })}
-
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
+
           let dataToSubmit = {
             email: values.email,
             password: values.password,
@@ -198,7 +196,8 @@ function RegisterPage(props) {
         );
       }}
     </Formik>
+  );
 };
 
 
-export default RegisterPage
+export default RegisterPage;

@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { auth } from "../_actions/user_action";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { auth } from '../_actions/user_action';
+import { useNavigate } from 'react-router-dom';
 
 function Auth(SpecificComponent, option, adminRoute = null) {  // LandingPage Component, option, adminRoute
     //backned의 그 사람의 현재 상태 확인
@@ -15,6 +15,7 @@ function Auth(SpecificComponent, option, adminRoute = null) {  // LandingPage Co
     function AuthenticationCheck(props) {
         const dispatch = useDispatch();
         let navigate = useNavigate();
+        let user = useSelector((state) => state.user);
 
         useEffect(() => {
             dispatch(auth()).then(async(response) => {
@@ -37,10 +38,9 @@ function Auth(SpecificComponent, option, adminRoute = null) {  // LandingPage Co
                 }
             });
         }, []);
-
-        return <SpecificComponent />;
+        return <SpecificComponent {...props} user={user} />;
     }
     return AuthenticationCheck;
 }
-  
+
 export default Auth;
