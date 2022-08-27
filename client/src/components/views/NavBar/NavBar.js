@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import RightMenu from './Sections/RightMenu';
 import { Drawer, Button } from 'antd';
-import { ShoppingOutlined } from '@ant-design/icons';
+import Icon, { ShoppingOutlined } from '@ant-design/icons';
 import './Sections/Navbar.css';
 
 function NavBar() {
@@ -29,7 +29,7 @@ function NavBar() {
           type="primary"
           onClick={showDrawer}
         >
-          {/* <Icon type="align-right" /> */}
+          <Icon type="align-right" />
         </Button>
         <Drawer
           title="Basic Drawer"

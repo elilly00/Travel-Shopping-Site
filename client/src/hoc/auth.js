@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { auth } from '../_actions/user_action';
+import { auth } from '../_actions/user_actions';
 import { useNavigate } from 'react-router-dom';
 
 function Auth(SpecificComponent, option, adminRoute = null) {  // LandingPage Component, option, adminRoute

@@ -2,8 +2,9 @@ import React from "react";
 import moment from "moment";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { registerUser } from "../../../_actions/user_action";
+import { registerUser } from "../../../_actions/user_actions";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import {
   Form,
@@ -36,6 +37,8 @@ const tailFormItemLayout = {
 
 function RegisterPage(props) {
   const dispatch = useDispatch();
+  let navigate = useNavigate();
+
   return (
 
     <Formik
@@ -74,7 +77,7 @@ function RegisterPage(props) {
 
           dispatch(registerUser(dataToSubmit)).then(response => {
             if (response.payload.success) {
-              props.history.push("/login");
+              navigate("/login");
             } else {
               alert(response.payload.err.errmsg)
             }
@@ -89,12 +92,10 @@ function RegisterPage(props) {
           values,
           touched,
           errors,
-          dirty,
           isSubmitting,
           handleChange,
           handleBlur,
           handleSubmit,
-          handleReset,
         } = props;
         return (
           <div className="app">
