@@ -1,5 +1,3 @@
-@import '~antd/dist/antd.css';
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
@@ -37,6 +35,5 @@ input.error {
 .input-feedback {
   color: red;
   height: 5px;
-  margin-top: -2px;
+  margin-top: -12px;
 }
-

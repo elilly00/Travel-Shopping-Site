@@ -5,16 +5,16 @@ import {
     AUTH_USER,
     LOGOUT_USER,
 } from './types';
-import { USER_SERVER } from '../Config.js';
+import { USER_SERVER } from '../components/Config.js';
 
 export function registerUser(dataToSubmit){
     const request = axios.post(`${USER_SERVER}/register`,dataToSubmit)
         .then(response => response.data);
-
+    
     return {
         type: REGISTER_USER,
         payload: request
-    };
+    }
 }
 
 export function loginUser(dataToSubmit){
@@ -24,7 +24,7 @@ export function loginUser(dataToSubmit){
     return {
         type: LOGIN_USER,
         payload: request
-    };
+    }
 }
 
 export function auth(){
@@ -34,7 +34,7 @@ export function auth(){
     return {
         type: AUTH_USER,
         payload: request
-    };
+    }
 }
 
 export function logoutUser(){
@@ -44,5 +44,6 @@ export function logoutUser(){
     return {
         type: LOGOUT_USER,
         payload: request
-    };
+    }
 }
+
