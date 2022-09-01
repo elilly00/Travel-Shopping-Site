@@ -20,6 +20,7 @@ function RightMenu(props) {
   };
 
   if (user.userData && !user.userData.isAuth) {
+    // 로그인 안된 상태의 NavBar
     return (
       <Menu mode={props.mode}>
         <Menu.Item key="mail">
@@ -31,8 +32,12 @@ function RightMenu(props) {
       </Menu>
     )
   } else {
+    // 로그인 된 상태의 NavBar
     return (
       <Menu mode={props.mode}>
+        <Menu.Item key="upload">
+          <a href="/product/upload">Upload</a>
+        </Menu.Item>
         <Menu.Item key="logout">
           <a onClick={logoutHandler}>Logout</a>
         </Menu.Item>
