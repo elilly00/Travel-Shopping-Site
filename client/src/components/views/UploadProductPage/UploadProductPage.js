@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
+import FileUpload from '../../utils/FileUpload';
 
 const { TextArea } = Input;
 
@@ -46,6 +47,10 @@ function UploadProductPage() {
 
         <Form>
             {/* DropZone */}
+
+            {/* FileUpload component */}
+            < FileUpload />
+
             <br />
             <br />
             <label>Name</label>
