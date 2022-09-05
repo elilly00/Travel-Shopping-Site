@@ -40,7 +40,7 @@ function FileUpload() {
     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <Dropzone onDrop={ dropHandler }>
         {({ getRootProps, getInputProps }) => (
-            <div style={{ width: '300px', height: '300px', border: '1px solid lightgray',
+            <div style={{ width: '450px', height: '300px', border: '1px solid lightgray',
                           display: 'flex', alignItems: 'center', justifyContent: 'center' 
                         }}
                 {...getRootProps()}>
@@ -51,11 +51,11 @@ function FileUpload() {
         </Dropzone>
         
         {/* Image preview */}
-        <div style={{ display: 'flex', width: '350px', height: '300px', overflowX: 'scroll' }}>
+        <div style={{ display: 'flex', width: '500px', height: '300px', overflowX: 'scroll' }}>
           
           {Images.map((image, index) => (
             <div onClick={() => deleteHandler(image)} key={index}>
-              <img style={{ minWidth: '350px', width: '300px', height: '300px' }}
+              <img style={{ minWidth: '450px', width: '500px', height: '280px' }}
                    src={`http://localhost:5020/${image}`}
                />
             </div>
