@@ -23,7 +23,7 @@ function UploadProductPage() {
     const [Description, setDescription] = useState("");
     const [Price, setPrice] = useState(0);
     const [Continent, setContinent] = useState(1);
-    const [Image, setImage] = useState([]);
+    const [Images, setImages] = useState([]);
 
     const titleChangeHandler = (event) => {
         setTitle(event.currentTarget.value);
@@ -38,6 +38,9 @@ function UploadProductPage() {
     const continentChangeHandler = (event) => {
         setContinent(event.currentTarget.value);
     };
+    const updateImages = (newImages) => {
+        setImages(newImages);
+    };
 
   return (
     <div style={{ maxWidth: '1000px', margin: '2rem auto' }}>
@@ -49,7 +52,7 @@ function UploadProductPage() {
             {/* DropZone */}
 
             {/* FileUpload component */}
-            < FileUpload />
+            <FileUpload refreshFunction={updateImages} />
 
             <br />
             <br />

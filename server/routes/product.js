@@ -9,15 +9,16 @@ const multer = require('multer');
 const storage = multer.diskStorage({
     // 파일 저장 위치
     destination: function (req, file, cb) {
-      cb(null, 'uploads/')
+      cb(null, 'uploads/');
     },
     // 파일 이름 설정
     filename: function (req, file, cb) {
-      cb(null, `${Date.now()}_${file.originalname}`)
+      const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+      cb(null, `${Date.now()}_${file.originalname}`);
     }
   });
   
-const upload = multer({ storage: storage }).single("file");
+const upload = multer({ storage: storage });
 
 router.post('/image', (req, res) => {
 
@@ -31,6 +32,6 @@ router.post('/image', (req, res) => {
             filePath: res.req.file.path, 
             fileName: res.req.file.filename 
         });
-    })
+    });
 });
 module.exports = router;
