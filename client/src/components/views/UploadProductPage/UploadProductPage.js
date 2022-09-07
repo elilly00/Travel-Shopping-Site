@@ -17,7 +17,7 @@ const Continents = [
     { key: 7, value: "Antarctica" },
 ];
 
-function UploadProductPage() {
+function UploadProductPage(props) {
 
     const [Title, setTitle] = useState("");
     const [Description, setDescription] = useState("");
@@ -42,13 +42,41 @@ function UploadProductPage() {
         setImages(newImages);
     };
 
+    const submitHandler = (event) => {
+        event.preventDefault();
+    
+        if(!Title || !Description || !Price || !Continent || !Images) {
+          return alert("모든 값을 넣어주셔야 합니다.");
+        }
+        
+        // 서버에 채운 값들을 request로 보냄
+        const body = {
+          writer: props.user.userData._id,
+          title: Title,
+          description: Description,
+          price: Price,
+          images: Images,
+          continents: Continents,
+        };
+    
+        Axios.post("/api/product", body).then((response) => {
+          if (response.data.success) {
+            alert("상품 업로드에 성공했습니다.");
+            props.history.push("/");
+          } else {
+            alert("상품 업로드에 실패했습니다.");
+          }
+          
+        });
+    };
+
   return (
     <div style={{ maxWidth: '1000px', margin: '2rem auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '3rem '}}>
             <h2> 여행 상품 업로드 </h2> 
         </div>
 
-        <Form>
+        <Form onSubmit={submitHandler}>
             {/* DropZone */}
 
             {/* FileUpload component */}
@@ -75,7 +103,7 @@ function UploadProductPage() {
             </select>
             <br />
             <br />
-            <Button>
+            <Button type="submit">
                 Submit
             </Button>
 
