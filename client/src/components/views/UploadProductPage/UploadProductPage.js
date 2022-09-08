@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
 import FileUpload from '../../utils/FileUpload';
-
+import axios from 'axios';
 const { TextArea } = Input;
 
 /* 국가 목록은 <option>을 여러 개 생성하지 않고 
@@ -59,7 +59,7 @@ function UploadProductPage(props) {
           continents: Continents,
         };
     
-        Axios.post("/api/product", body).then((response) => {
+        axios.post("/api/product", body).then((response) => {
           if (response.data.success) {
             alert("상품 업로드에 성공했습니다.");
             props.history.push("/");
