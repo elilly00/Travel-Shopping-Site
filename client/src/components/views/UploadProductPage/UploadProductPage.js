@@ -23,7 +23,7 @@ function UploadProductPage(props) {
   const [Description, setDescription] = useState("");
   const [Price, setPrice] = useState(0);
   const [Continent, setContinent] = useState(1);
-  const [Images, setImages] = useState(1);
+  const [Images, setImages] = useState([]);
 
   const titleChangeHandler = (event) => {
     setTitle(event.currentTarget.value);
@@ -77,7 +77,7 @@ function UploadProductPage(props) {
   return (
     <div style={{ maxWidth: "1000px", margin: "2rem auto" }}>
       <div style={{ textAlign: "center", marginBottom: "2rem" }}>
-        <h2 level={2}>여행 상품 업로드</h2>
+        <h2>여행 상품 업로드</h2>
       </div>
 
       <Form onSubmitCapture={submitHandler}>

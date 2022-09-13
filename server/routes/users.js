@@ -3,7 +3,6 @@ const router = express.Router();
 const { User } = require("../models/User");
 
 const { auth } = require("../middleware/auth");
-const e = require("express");
 
 //=================================
 //             User
@@ -44,7 +43,8 @@ router.post("/login", (req, res) => {
       });
 
     user.comparePassword(req.body.password, (err, isMatch) => {
-      if (!isMatch) return res.json({ loginSuccess: false, message: "Wrong password" });
+      if (!isMatch) 
+        return res.json({ loginSuccess: false, message: "Wrong password" });
 
       user.generateToken((err, user) => {
         if (err) return res.status(400).send(err);

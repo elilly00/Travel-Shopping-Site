@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const cors = require("cors");
+const port = process.env.PORT || 5020;
 
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -54,8 +55,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
   });
 }
-
-const port = process.env.PORT || 5020;
 
 app.listen(port, () => {
   console.log(`Server Listening on ${port}`);
