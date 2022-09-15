@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOGIN_USER, REGISTER_USER, AUTH_USER, LOGOUT_USER, ADD_TO_CART, GET_CART_ITEMS } from './types';
+import { LOGIN_USER, REGISTER_USER, AUTH_USER, LOGOUT_USER, ADD_TO_CART, GET_CART_ITEMS, REMOVE_CART_ITEM } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
 export function registerUser(dataToSubmit) {
@@ -40,34 +40,41 @@ export function logoutUser() {
 
 export function addToCart(id) {
     let body = {
-        productId: id,
+        productId : id,
     };
 
-    const request = axios.post(`${USER_SERVER}/addToCart`, body).then((response) => response.data);
+    const request = axios.post(`${USER_SERVER}/addToCart`, body)
+    .then(response => response.data);
 
     return {
         type: ADD_TO_CART,
         payload: request,
-    };
+    }
 }
 
-export function getCartItems(cartItems, userCart) {
-    const request = axios.get(`/api/product/products_by_id?id=${cartItems}&type=array`).then((response) => {
-        // CartItem들에 해당하는 정보들을 Product Collection에서 가져온 후에 Quantity정보를 넣어준다
-        userCart.forEach((cartItems) => {
-            response.data.product.forEach((productDetail, index) => {
+export function getCartItems(cartItems, userCart){
+
+    const request = axios.get(`/api/product/products_by_id?id=${cartItems}&type=array`)
+        .then(response => {
+        
+        //cartItme들에 해당하는 정보들을
+        //Product Collection에서 가져온 후에
+        //Quantity 정보를 넣어준다
+        userCart.forEach(cartItems => {
+            response.data.forEach((productDetail,index) => {
                 if(cartItems.id === productDetail._id) {
-                    response.data.product[index].quantity = cartItems.quantity;
+                    response.data[index].quantity = cartItems.quantity
                 }
-            });
-        });
+            })
+        })
         return response.data;
+        
         });
 
     return {
         type: GET_CART_ITEMS,
-        payload: request,
-    };
+        payload: request
+    }
 }
 
 export function removeCartItem(productid) {
