@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {Icon} from 'antd';
 
 function Footer() {
@@ -13,4 +13,4 @@ function Footer() {
     )
 }
 
-export default Footer
+export default Footer;
